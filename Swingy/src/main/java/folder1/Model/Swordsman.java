@@ -30,6 +30,8 @@ public class Swordsman extends Hero{
                 ", weapon=" + weapon +
                 ", helm=" + helm +
                 ", armor=" + armor +
+                ", x=" + x +
+                ", y=" + y +
                 '}';
     }
 }

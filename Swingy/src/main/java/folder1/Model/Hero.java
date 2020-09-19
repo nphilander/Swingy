@@ -10,6 +10,8 @@ public class Hero {
     protected int weapon;
     protected int helm;
     protected int armor;
+    protected int x;
+    protected int y;
 
     public String getName() {
         return name;
@@ -83,6 +85,22 @@ public class Hero {
         this.armor = armor;
     }
 
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
     @Override
     public String toString() {
         return "Hero{" +
@@ -95,6 +113,8 @@ public class Hero {
                 ", weapon=" + weapon +
                 ", helm=" + helm +
                 ", armor=" + armor +
+                ", x=" + x +
+                ", y=" + y +
                 '}';
     }
 }

@@ -18,6 +18,7 @@ public class Archer extends Hero{
         this.armor = 0;
     }
 
+
     @Override
     public String toString() {
         return "Archer{" +
@@ -30,6 +31,8 @@ public class Archer extends Hero{
                 ", weapon=" + weapon +
                 ", helm=" + helm +
                 ", armor=" + armor +
+                ", x=" + x +
+                ", y=" + y +
                 '}';
     }
 }

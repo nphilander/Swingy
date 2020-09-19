@@ -7,7 +7,7 @@ import folder1.Model.Monster;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Battle {
+public class Battle{
     
     public void fight (Hero hero, Monster monster) {
         System.out.println(hero.toString());
@@ -35,11 +35,12 @@ public class Battle {
         }
         if(hero.getHitPoints() <= 0)
         {
-            System.out.println("You lose");
+            System.out.println("You lose \n");
             System.exit(0);
         }
         else {
-            System.out.println("You win");
+            System.out.println("You win \n");
+            experience(hero);
             dropArtifact(hero);
         }
     }
@@ -56,7 +57,7 @@ public class Battle {
 
         if(number == 1) {
             if(number1 == 0) {
-                System.out.println("Armor recived");
+                System.out.println("Armor received");
 
                 System.out.println("Do you want to keep the Armor (Armor value is " + randIncrease + ")" + ": Yes or No? ");
                 String armor = myScanner.next();
@@ -67,7 +68,7 @@ public class Battle {
                 }
             }
             if(number1 == 1) {
-                System.out.println("Helm recived");
+                System.out.println("Helm received");
 
                 System.out.println("Do you want to keep the Helm (Helm value is " + randIncrease + ")" + ": Yes or No?");
                 String helm = myScanner.next();
@@ -79,7 +80,7 @@ public class Battle {
 
             }
             if(number1 == 2) {
-                System.out.println("Weapon recived");
+                System.out.println("Weapon received");
 
                 System.out.println("Do you want to keep the Weapon (Weapon value is " + randIncrease + ")" + ": Yes or No?");
                 String weapon = myScanner.next();
@@ -89,6 +90,28 @@ public class Battle {
                     System.out.println("attack increased by " + randIncrease);
                 }
             }
+        }
+
+    }
+
+    public void experience(Hero hero) {
+        int xp;
+        int levelForm;
+        int stats;
+        levelForm = hero.getLevel() * 1000 + (hero.getLevel() - 1) * (hero.getLevel() - 1) * 450;
+        Random num = new Random();
+        stats = num.nextInt(15) + 1;
+        xp = num.nextInt(100) + 1;
+
+        System.out.println("Experience gained is " + xp + "\n");
+        hero.setXp(hero.getXp() + xp);
+
+        if(hero.getXp() >= levelForm){
+            hero.setLevel(hero.getLevel() + 1);
+            hero.setHitPoints(hero.getHitPoints() + stats);
+            hero.setDefense(hero.getDefense() + stats);
+            hero.setAttack(hero.getAttack() + stats);
+            System.out.println("Hero reached level  " + hero.getLevel());
         }
 
     }

@@ -6,4 +6,5 @@ public class Globals {
     public static int originalHitPoints;
 
     public static int currentHitPoints;
+    public static int mapSize;
 }
