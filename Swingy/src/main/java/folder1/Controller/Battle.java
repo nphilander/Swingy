@@ -13,35 +13,33 @@ public class Battle{
         System.out.println(hero.toString());
         System.out.println(monster.toString());
 
-        while(hero.getHitPoints() > 0 && monster.getHitPoints() > 0) {
-            if(hero.getAttack() > monster.getDefense())
-               monster.setHitPoints(monster.getHitPoints() - hero.getAttack());
-            else
-                monster.setHitPoints(monster.getHitPoints() - hero.getAttack() / 2);
-            System.out.println(monster.toString());
-            if(monster.getHitPoints() <= 0)
-            {
-                break;
+        if (run(hero)) {
+            while (hero.getHitPoints() > 0 && monster.getHitPoints() > 0) {
+                if (hero.getAttack() > monster.getDefense())
+                    monster.setHitPoints(monster.getHitPoints() - hero.getAttack());
+                else
+                    monster.setHitPoints(monster.getHitPoints() - hero.getAttack() / 2);
+                System.out.println("Hero attacked: " + monster.toString());
+                if (monster.getHitPoints() <= 0) {
+                    break;
+                }
+                if (monster.getAttack() > hero.getDefense()) {
+                    hero.setHitPoints(hero.getHitPoints() - monster.getAttack());
+                    Globals.currentHitPoints = Globals.currentHitPoints - monster.getAttack();
+                } else {
+                    hero.setHitPoints(hero.getHitPoints() - monster.getAttack() / 2);
+                    Globals.currentHitPoints = Globals.currentHitPoints - monster.getAttack() / 2;
+                }
+                System.out.println("Monster attacked: " + hero.toString());
             }
-            if(monster.getAttack() > hero.getDefense()) {
-                hero.setHitPoints(hero.getHitPoints() - monster.getAttack());
-                Globals.currentHitPoints = Globals.currentHitPoints - monster.getAttack();
+            if (hero.getHitPoints() <= 0) {
+                System.out.println("You lose \n");
+                System.exit(0);
+            } else {
+                System.out.println("You win \n");
+                experience(hero);
+                dropArtifact(hero);
             }
-            else {
-                hero.setHitPoints(hero.getHitPoints() - monster.getAttack() / 2);
-                Globals.currentHitPoints = Globals.currentHitPoints - monster.getAttack() / 2;
-            }
-            System.out.println(hero.toString());
-        }
-        if(hero.getHitPoints() <= 0)
-        {
-            System.out.println("You lose \n");
-            System.exit(0);
-        }
-        else {
-            System.out.println("You win \n");
-            experience(hero);
-            dropArtifact(hero);
         }
     }
 
@@ -114,6 +112,37 @@ public class Battle{
             System.out.println("Hero reached level  " + hero.getLevel());
         }
 
+    }
+
+    public boolean run (Hero hero){
+        String log;
+        int rand;
+        Random random = new Random();
+        rand = random.nextInt(2) + 1;
+
+        System.out.println("Type 'yes' to fight : Type 'no' to run away");
+        Scanner input = new Scanner(System.in);
+        log = input.next();
+
+        if(log.equals("yes"))
+        {
+            return true; // if the fight happens
+        }
+        else
+        {
+            if(rand == 2)
+            {
+                System.out.println("Running away allowed, return to previous spot");
+                hero.setX(Globals.previousX);
+                hero.setY(Globals.previousY);
+                return false;
+            }
+            else
+            {
+                System.out.println("Running was NOT allowed. You have to fight");
+                return true;
+            }
+        }
     }
 
 }

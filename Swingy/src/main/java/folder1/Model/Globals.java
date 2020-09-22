@@ -7,4 +7,7 @@ public class Globals {
 
     public static int currentHitPoints;
     public static int mapSize;
+
+    public static int previousX;
+    public static int previousY;
 }

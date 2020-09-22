@@ -8,6 +8,10 @@ import java.util.Scanner;
 public class Direction {
 
     public void dir(Hero hero){
+
+        Globals.previousX = hero.getX();
+        Globals.previousY = hero.getY();
+
         String input;
         System.out.println("Directions are Up = w , Down = s, Left = a, Right = d on keyboard");
 
