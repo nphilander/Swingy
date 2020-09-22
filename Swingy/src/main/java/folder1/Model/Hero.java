@@ -3,41 +3,18 @@ package folder1.Model;
 import javax.validation.constraints.*;
 
 public class Hero implements java.io.Serializable{
-    @NotBlank(message = "Name is required")
-    @Size(min = 3, max = 50, message = "Name must be between 3 and 50 characters")
+    @Size(min = 2, max = 20, message = "Name must be between 2 and 20 characters")
     protected String name;
-
-    @Min(value = 1 , message = "Value has to be 1 or greater")
-    @Max(value = 10 , message = "Value had to be 10 or less")
     protected int level;
-
-    @Max(value = 10000, message = "XP can go past 9000 depending on level")
     protected int xp;
-
-    @NotNull(message = "Attack should not be empty")
     protected int attack;
-
-    @NotNull(message = "Defense should not be empty")
     protected int defense;
-
-    @NotNull(message = "HitPoints should not be empty")
     protected int hitPoints;
-
-    @PositiveOrZero
     protected int weapon;
-
-    @PositiveOrZero
     protected int helm;
-
-    @PositiveOrZero
     protected int armor;
-
-    @PositiveOrZero
     protected int x;
-
-    @PositiveOrZero
     protected int y;
-
 
     public String getName() {
         return name;

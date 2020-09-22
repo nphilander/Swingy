@@ -59,7 +59,7 @@ public class Map {
                 '}';
     }
 
-    public void createMap(){
+    public Map[] createMap(Hero hero){
         Map[] tile = new Map[Globals.mapSize * Globals.mapSize];
 
         for(int i = 0; i < Globals.mapSize * Globals.mapSize; i++)
@@ -73,14 +73,12 @@ public class Map {
             tile[i].setY(i % Globals.mapSize + 1);
         }
 
-
-        for(int i = 0; i < Globals.mapSize * Globals.mapSize; i++) {
-            System.out.println(tile[i].toString());
-        }
-
-
-
-
+//        for(int i = 0; i < Globals.mapSize * Globals.mapSize; i++) {
+//            System.out.println(tile[i].toString());
+//        }
+        hero.setX(Globals.mapSize / 2);
+        hero.setY(Globals.mapSize / 2);
+        return tile;
     }
 }
 

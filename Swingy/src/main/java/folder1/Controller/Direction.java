@@ -39,6 +39,7 @@ public class Direction {
 
          if(hero.getX() == 0 || hero.getY() == 0 || hero.getY() == Globals.mapSize + 1 || hero.getX() == Globals.mapSize + 1){
              System.out.println("You have reached the border: Game completed");
+             new ReadFile().serializePlayer(hero);
              System.exit(0);
          }
 

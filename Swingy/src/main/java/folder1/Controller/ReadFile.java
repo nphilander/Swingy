@@ -9,14 +9,14 @@ import java.util.Scanner;
 
 
 public class ReadFile {
-    public void readPlayer(Hero hero){
+    public void serializePlayer(Hero hero){
     try {
-        FileOutputStream fileOut = new FileOutputStream("player.ser");
+        FileOutputStream fileOut = new FileOutputStream("player.txt");
         ObjectOutputStream out = new ObjectOutputStream(fileOut);
         out.writeObject(hero);
         out.close();
         fileOut.close();
-        System.out.println("Serialized data is saved in player.ser");
+        System.out.println("Serialized data is saved in player.txt");
     } catch (IOException i) {
         i.printStackTrace();
      }
@@ -24,7 +24,7 @@ public class ReadFile {
 
     public Hero deserializePlayer(){
         try {
-            FileInputStream fileIn = new FileInputStream("player.ser");
+            FileInputStream fileIn = new FileInputStream("player.txt");
             ObjectInputStream in = new ObjectInputStream(fileIn);
             Hero hero = (Hero) in.readObject();
             in.close();
@@ -38,6 +38,5 @@ public class ReadFile {
             c.printStackTrace();
             return null;
         }
-     //   System.out.println("Deserialized player is " + hero.toString());
     }
 }
