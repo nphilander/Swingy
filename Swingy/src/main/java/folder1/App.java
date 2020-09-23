@@ -62,9 +62,10 @@ public class App
         Validator validator = factory.getValidator();
         Set<ConstraintViolation<Hero>> violations = validator.validate(hero);
         for (ConstraintViolation<Hero> violation : violations) {
-            if (violation.getMessage() != null);
+            if (violation.getMessage() != null){
             System.out.println(violation.getMessage());
             System.exit(0);
+            }
         }
     }
 }
