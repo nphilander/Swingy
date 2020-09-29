@@ -57,9 +57,9 @@ public class Battle{
             if(number1 == 0) {
                 System.out.println("Armor received");
 
-                System.out.println("Do you want to keep the Armor (Armor value is " + randIncrease + ")" + ": Yes or No? ");
+                System.out.println("Do you want to keep the Armor (Armor value is " + randIncrease + ")" + ": Y or N? ");
                 String armor = myScanner.next();
-                if(armor.equals("Yes")) {
+                if(armor.equals("Y")) {
                     hero.setDefense(Globals.originalDefense + randIncrease);
                     hero.setArmor(randIncrease);
                     System.out.println("defence increased by " + randIncrease);
@@ -68,9 +68,9 @@ public class Battle{
             if(number1 == 1) {
                 System.out.println("Helm received");
 
-                System.out.println("Do you want to keep the Helm (Helm value is " + randIncrease + ")" + ": Yes or No?");
+                System.out.println("Do you want to keep the Helm (Helm value is " + randIncrease + ")" + ": Y or N?");
                 String helm = myScanner.next();
-                if(helm.equals("Yes")) {
+                if(helm.equals("Y")) {
                     hero.setHitPoints(Globals.currentHitPoints + randIncrease);
                     hero.setHelm(randIncrease);
                     System.out.println("hp increased by " + randIncrease);
@@ -80,9 +80,9 @@ public class Battle{
             if(number1 == 2) {
                 System.out.println("Weapon received");
 
-                System.out.println("Do you want to keep the Weapon (Weapon value is " + randIncrease + ")" + ": Yes or No?");
+                System.out.println("Do you want to keep the Weapon (Weapon value is " + randIncrease + ")" + ": Y or N?");
                 String weapon = myScanner.next();
-                if(weapon.equals("Yes")) {
+                if(weapon.equals("Y")) {
                     hero.setAttack(Globals.originalAttack + randIncrease);
                     hero.setWeapon(randIncrease);
                     System.out.println("attack increased by " + randIncrease);

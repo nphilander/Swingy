@@ -1,5 +1,6 @@
 package folder1.Controller;
 
+import folder1.App;
 import folder1.Model.Globals;
 import folder1.Model.Hero;
 
@@ -7,7 +8,7 @@ import java.util.Scanner;
 
 public class Direction {
 
-    public void dir(Hero hero){
+    public void dir(Hero hero, String str){
 
         Globals.previousX = hero.getX();
         Globals.previousY = hero.getY();
@@ -16,7 +17,10 @@ public class Direction {
         System.out.println("Directions are Up = w , Down = s, Left = a, Right = d on keyboard");
 
         Scanner userInput = new Scanner(System.in);
-        input = userInput.next();
+        if (str.equals("console"))
+            input = userInput.next();
+        else
+            input = App.gui.getInput();
 
         if (input.equals("w") ) {
             hero.setY(hero.getY() + 1);

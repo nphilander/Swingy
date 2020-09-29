@@ -16,7 +16,7 @@ public class ReadFile {
         out.writeObject(hero);
         out.close();
         fileOut.close();
-        System.out.println("Serialized data is saved in player.txt");
+        System.out.println("Player data is saved in player.txt");
     } catch (IOException i) {
         i.printStackTrace();
      }
