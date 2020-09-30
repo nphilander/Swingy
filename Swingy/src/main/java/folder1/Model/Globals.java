@@ -10,4 +10,6 @@ public class Globals {
 
     public static int previousX;
     public static int previousY;
+
+    public static String args;
 }

@@ -12,16 +12,16 @@ public class SetUp {
     JButton startBtn, loadGame;
     Font titleFont = new Font("Times New Roman", Font.PLAIN, 35);
     Font startFont = new Font("Times New Roman", Font.PLAIN, 25);
-    Font textFont = new Font("Times New Roman", Font.PLAIN, 19);
     Container container; //Used to place stuff like buttons and boxes
 
     TitleScreenHandler tsHandler = new TitleScreenHandler();
 
     public SetUp() {
         window = new JFrame();
-        window.setSize(900, 700);
+        window.setSize(800, 600);
+        window.setTitle("SWINGY GUI");
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.getContentPane().setBackground(Color.BLACK);
+        window.getContentPane().setBackground(Color.gray);
         window.setLayout(null); //customise layout
         window.setVisible(true);
         container = window.getContentPane();

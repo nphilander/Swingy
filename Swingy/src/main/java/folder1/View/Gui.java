@@ -8,20 +8,16 @@ import java.io.*;
 
 public class Gui extends JFrame{
     public static InputHandler inputHandler;
-    final JTextField textField = new JTextField(30);
-
-//    private JButton button1;
-   // TitleScreenHandler tsHandler = new TitleScreenHandler();
-  //  private MyActionListener myActionListener;
-
+    final JTextField textField = new JTextField(20);
 
     public void game() throws IOException {
         setSize(900, 700);
         setTitle("SWINGY GUI");
-        setBackground(Color.MAGENTA);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         final JTextArea output = new JTextArea();
+        output.setFont(new Font("Verdana", Font.PLAIN, 15));
+        output.setBackground(Color.PINK);
         output.setEditable(false); //Setting the gui output to not be edited
         add( new JScrollPane(output)); //adding a scroll bar so I can see more content
 
@@ -33,14 +29,17 @@ public class Gui extends JFrame{
         });
         System.setOut(outPut);
 
-/////////////
+        textField.setHorizontalAlignment(JTextField.CENTER);
+        textField.setBackground(Color.gray);
+        textField.setFont(new Font("Arial", Font.BOLD, 25));
 
         PipedOutputStream printOut = new PipedOutputStream();
         final PrintWriter writer = new PrintWriter(printOut);
         inputHandler = new InputHandler(printOut);
+        final JButton button = new JButton("Press to load");
 
-//        final JTextField textField = new JTextField(30);
-        final JButton button = new JButton("OK");
+        button.setFont(new Font("Arial", Font.BOLD, 40));
+        button.setBackground(Color.magenta);
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) { //Change to key listener
@@ -52,9 +51,7 @@ public class Gui extends JFrame{
         getContentPane().setLayout(new GridLayout(3, 1));
         add(textField); //adds the textfield to type in
         add(button);
-        ///////ends here
         setLookAndFeel();
-        //setVisible(true); // always last
     }
     public static void setLookAndFeel() {
                  try {

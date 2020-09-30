@@ -1,5 +1,6 @@
 package folder1.Controller;
 
+import folder1.App;
 import folder1.Model.Globals;
 import folder1.Model.Hero;
 import folder1.Model.Monster;
@@ -57,8 +58,12 @@ public class Battle{
             if(number1 == 0) {
                 System.out.println("Armor received");
 
-                System.out.println("Do you want to keep the Armor (Armor value is " + randIncrease + ")" + ": Y or N? ");
-                String armor = myScanner.next();
+                System.out.println("Do you want to keep the Armor (Armor value is " + randIncrease + ")" + ": Y or press any character decline? ");
+                String armor;
+                if (Globals.args.equals("console"))
+                    armor = myScanner.next();
+                else
+                    armor = App.gui.getInput();
                 if(armor.equals("Y")) {
                     hero.setDefense(Globals.originalDefense + randIncrease);
                     hero.setArmor(randIncrease);
@@ -68,8 +73,12 @@ public class Battle{
             if(number1 == 1) {
                 System.out.println("Helm received");
 
-                System.out.println("Do you want to keep the Helm (Helm value is " + randIncrease + ")" + ": Y or N?");
-                String helm = myScanner.next();
+                System.out.println("Do you want to keep the Helm (Helm value is " + randIncrease + ")" + ": Y or press any character decline?");
+                String helm;
+                if (Globals.args.equals("console"))
+                    helm = myScanner.next();
+                else
+                    helm = App.gui.getInput();
                 if(helm.equals("Y")) {
                     hero.setHitPoints(Globals.currentHitPoints + randIncrease);
                     hero.setHelm(randIncrease);
@@ -80,8 +89,12 @@ public class Battle{
             if(number1 == 2) {
                 System.out.println("Weapon received");
 
-                System.out.println("Do you want to keep the Weapon (Weapon value is " + randIncrease + ")" + ": Y or N?");
-                String weapon = myScanner.next();
+                System.out.println("Do you want to keep the Weapon (Weapon value is " + randIncrease + ")" + ": Y or press any character decline?");
+                String weapon;
+                if (Globals.args.equals("console"))
+                    weapon = myScanner.next();
+                else
+                    weapon = App.gui.getInput();
                 if(weapon.equals("Y")) {
                     hero.setAttack(Globals.originalAttack + randIncrease);
                     hero.setWeapon(randIncrease);
@@ -120,9 +133,12 @@ public class Battle{
         Random random = new Random();
         rand = random.nextInt(2) + 1;
 
-        System.out.println("Type 'yes' to fight : Type 'no' to run away");
+        System.out.println("Type 'yes' to fight : Type any character to run away");
         Scanner input = new Scanner(System.in);
-        log = input.next();
+        if (Globals.args.equals("console"))
+            log = input.next();
+        else
+            log = App.gui.getInput();
 
         if(log.equals("yes"))
         {

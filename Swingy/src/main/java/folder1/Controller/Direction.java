@@ -6,9 +6,11 @@ import folder1.Model.Hero;
 
 import java.util.Scanner;
 
+import static java.lang.Thread.sleep;
+
 public class Direction {
 
-    public void dir(Hero hero, String str){
+    public void dir(Hero hero, String str) throws InterruptedException {
 
         Globals.previousX = hero.getX();
         Globals.previousY = hero.getY();
@@ -24,7 +26,8 @@ public class Direction {
 
         if (input.equals("w") ) {
             hero.setY(hero.getY() + 1);
-            System.out.println("You moved NORTH \n");        }
+            System.out.println("You moved NORTH \n");
+        }
 
          if(input.equals("s") ) {
              hero.setY(hero.getY() - 1);
@@ -44,6 +47,8 @@ public class Direction {
          if(hero.getX() == 0 || hero.getY() == 0 || hero.getY() == Globals.mapSize + 1 || hero.getX() == Globals.mapSize + 1){
              System.out.println("You have reached the border: Game completed");
              new ReadFile().serializePlayer(hero);
+             if (Globals.args.equals("gui"))
+                 sleep(5000);
              System.exit(0);
          }
 

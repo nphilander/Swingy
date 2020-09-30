@@ -3,10 +3,7 @@ package folder1;
 import folder1.Controller.Battle;
 import folder1.Controller.Direction;
 import folder1.Controller.ReadFile;
-import folder1.Model.Archer;
-import folder1.Model.Hero;
-import folder1.Model.Map;
-import folder1.Model.Swordsman;
+import folder1.Model.*;
 import folder1.View.Gui;
 import folder1.View.SetUp;
 
@@ -26,12 +23,14 @@ public class App
 {
     public static Gui gui = new Gui();
 
-    public static void main( String[] args ) throws IOException {
+    public static void main( String[] args ) throws IOException, InterruptedException {
+        Globals.args = args[0];
         if (args[0].equals("console"))
             runConsole(args[0]);
         else if (args[0].equals("gui"))
             runGui(args[0]);
         else {
+            System.out.println("Please parse an argument between 'gui' and 'console' ");
         }
     }
 
@@ -46,7 +45,7 @@ public class App
             }
     }
 
-    public static void runConsole(String args) {
+    public static void runConsole(String args) throws InterruptedException {
         Scanner scanner = new Scanner(System.in);
         Hero hero;
 
@@ -87,7 +86,7 @@ public class App
         }
     }
 
-    public static void runGui(String args) throws IOException {
+    public static void runGui(String args) throws IOException, InterruptedException {
         SetUp game = new SetUp();
         gui.game();
 
