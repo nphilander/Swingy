@@ -55,3 +55,7 @@ necessary experience to level up will follow this pattern:
  * Level 3 - 4800 XP
  * Level 4 - 8050 XP
  * Level 5 - 12200 XP
+ 
+ ##TO RUN GAME
+ :mvn clean package
+ :java -jar swingy.jar console   or   java -jar swingy.jar gui
