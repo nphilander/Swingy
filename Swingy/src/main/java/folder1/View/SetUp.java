@@ -1,15 +1,14 @@
 package folder1.View;
 
-import folder1.App;
-
 import javax.swing.*;
 import java.awt.*;
 
 public class SetUp {
     JFrame window;
-    JPanel titlePanel, startButton, loadGamePanel;
+    JPanel titlePanel;
+    JPanel startButton;
     JLabel titleLabel;
-    JButton startBtn, loadGame;
+    JButton startBtn;
     Font titleFont = new Font("Times New Roman", Font.PLAIN, 35);
     Font startFont = new Font("Times New Roman", Font.PLAIN, 25);
     Container container; //Used to place stuff like buttons and boxes

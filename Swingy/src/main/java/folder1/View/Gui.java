@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 
-public class Gui extends JFrame{
+public class Gui extends JFrame {
     public static InputHandler inputHandler;
     final JTextField textField = new JTextField(20);
 
@@ -19,12 +19,12 @@ public class Gui extends JFrame{
         output.setFont(new Font("Verdana", Font.PLAIN, 15));
         output.setBackground(Color.PINK);
         output.setEditable(false); //Setting the gui output to not be edited
-        add( new JScrollPane(output)); //adding a scroll bar so I can see more content
+        add(new JScrollPane(output)); //adding a scroll bar so I can see more content
 
         PrintStream outPut = new PrintStream(new OutputStream() {
             @Override
             public void write(int b) {
-                output.append(""+(char)(b & 0xFF));
+                output.append("" + (char) (b & 0xFF));
             }
         });
         System.setOut(outPut);
@@ -53,20 +53,21 @@ public class Gui extends JFrame{
         add(button);
         setLookAndFeel();
     }
+
     public static void setLookAndFeel() {
-                 try {
-                         UIManager.setLookAndFeel(
-                                    "javax.swing.plaf.nimbus.NimbusLookAndFeel"
-                         );
-                     } catch (Exception exc) {
-                         // ignore error
-                     }
-             }
+        try {
+            UIManager.setLookAndFeel(
+                    "javax.swing.plaf.nimbus.NimbusLookAndFeel"
+            );
+        } catch (Exception exc) {
+            // ignore error
+        }
+    }
 
     public String getInput() {
         String inPut = inputHandler.scanner.nextLine();
         textField.setText("");
         return inPut;
-       // return scanner.nextLine();
+        // return scanner.nextLine();
     }
 }

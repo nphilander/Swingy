@@ -8,9 +8,9 @@ import folder1.Model.Monster;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Battle{
-    
-    public void fight (Hero hero, Monster monster) {
+public class Battle {
+
+    public void fight(Hero hero, Monster monster) {
         System.out.println(hero.toString());
         System.out.println(monster.toString());
 
@@ -34,28 +34,29 @@ public class Battle{
                 System.out.println("Monster attacked: " + hero.toString());
             }
             if (hero.getHitPoints() <= 0) {
-                System.out.println("You lose \n");
+                System.out.println("   YOU LOST!!!\n");
                 System.exit(0);
             } else {
-                System.out.println("You win \n");
+                System.out.println("   YOU WON!!!\n");
                 experience(hero);
                 dropArtifact(hero);
             }
         }
     }
 
-    public void dropArtifact (Hero hero){
+    private void dropArtifact(Hero hero) {
         Scanner myScanner = new Scanner(System.in);
-        int number;
-        int number1;
+        int dropped;
+        int artifactCategory;
         int randIncrease;
+
         Random num = new Random();
-        number = num.nextInt(3);
-        number1 = num.nextInt(3);
+        dropped = num.nextInt(3);
+        artifactCategory = num.nextInt(3);
         randIncrease = num.nextInt(10) + 1;
 
-        if(number == 1) {
-            if(number1 == 0) {
+        if (dropped == 1) {
+            if (artifactCategory == 0) {
                 System.out.println("Armor received");
 
                 System.out.println("Do you want to keep the Armor (Armor value is " + randIncrease + ")" + ": Y or press any character decline? ");
@@ -64,13 +65,14 @@ public class Battle{
                     armor = myScanner.next();
                 else
                     armor = App.gui.getInput();
-                if(armor.equals("Y")) {
+                if (armor.equals("Y")) {
                     hero.setDefense(Globals.originalDefense + randIncrease);
                     hero.setArmor(randIncrease);
                     System.out.println("defence increased by " + randIncrease);
-                }
+                } else
+                    System.out.println("Artifact not acquired");
             }
-            if(number1 == 1) {
+            if (artifactCategory == 1) {
                 System.out.println("Helm received");
 
                 System.out.println("Do you want to keep the Helm (Helm value is " + randIncrease + ")" + ": Y or press any character decline?");
@@ -79,14 +81,15 @@ public class Battle{
                     helm = myScanner.next();
                 else
                     helm = App.gui.getInput();
-                if(helm.equals("Y")) {
+                if (helm.equals("Y")) {
                     hero.setHitPoints(Globals.currentHitPoints + randIncrease);
                     hero.setHelm(randIncrease);
                     System.out.println("hp increased by " + randIncrease);
-                }
+                } else
+                    System.out.println("Artifact not acquired");
 
             }
-            if(number1 == 2) {
+            if (artifactCategory == 2) {
                 System.out.println("Weapon received");
 
                 System.out.println("Do you want to keep the Weapon (Weapon value is " + randIncrease + ")" + ": Y or press any character decline?");
@@ -95,17 +98,18 @@ public class Battle{
                     weapon = myScanner.next();
                 else
                     weapon = App.gui.getInput();
-                if(weapon.equals("Y")) {
+                if (weapon.equals("Y")) {
                     hero.setAttack(Globals.originalAttack + randIncrease);
                     hero.setWeapon(randIncrease);
                     System.out.println("attack increased by " + randIncrease);
-                }
+                } else
+                    System.out.println("Artifact not acquired");
             }
         }
 
     }
 
-    public void experience(Hero hero) {
+    private void experience(Hero hero) {
         int xp;
         int levelForm;
         int stats;
@@ -117,7 +121,7 @@ public class Battle{
         System.out.println("Experience gained is " + xp + "\n");
         hero.setXp(hero.getXp() + xp);
 
-        if(hero.getXp() >= levelForm){
+        if (hero.getXp() >= levelForm) {
             hero.setLevel(hero.getLevel() + 1);
             hero.setHitPoints(hero.getHitPoints() + stats);
             hero.setDefense(hero.getDefense() + stats);
@@ -127,7 +131,7 @@ public class Battle{
 
     }
 
-    public boolean run (Hero hero){
+    private boolean run(Hero hero) {
         String log;
         int rand;
         Random random = new Random();
@@ -140,21 +144,15 @@ public class Battle{
         else
             log = App.gui.getInput();
 
-        if(log.equals("yes"))
-        {
+        if (log.equals("yes")) {
             return true; // if the fight happens
-        }
-        else
-        {
-            if(rand == 2)
-            {
+        } else {
+            if (rand == 2) {
                 System.out.println("Running away allowed, return to previous spot");
                 hero.setX(Globals.previousX);
                 hero.setY(Globals.previousY);
                 return false;
-            }
-            else
-            {
+            } else {
                 System.out.println("Running was NOT allowed. You have to fight");
                 return true;
             }

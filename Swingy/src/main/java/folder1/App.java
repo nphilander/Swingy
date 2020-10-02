@@ -19,22 +19,21 @@ import java.util.Set;
  * @author Nokhwezi Kholane
  */
 
-public class App
-{
+public class App {
     public static Gui gui = new Gui();
 
-    public static void main( String[] args ) throws IOException, InterruptedException {
+    public static void main(String[] args) throws IOException, InterruptedException {
         Globals.args = args[0];
-        if (args[0].equals("console"))
-            runConsole(args[0]);
-        else if (args[0].equals("gui"))
-            runGui(args[0]);
+        if (Globals.args.equals("console"))
+            runConsole(Globals.args);
+        else if (Globals.args.equals("gui"))
+            runGui(Globals.args);
         else {
             System.out.println("Please parse an argument between 'gui' and 'console' ");
         }
     }
 
-    public static void validation(Hero hero) {
+    private static void validation(Hero hero) {
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         Validator validator = factory.getValidator();
         Set<ConstraintViolation<Hero>> violations = validator.validate(hero);
@@ -44,33 +43,37 @@ public class App
                 System.exit(0);
             }
     }
-
-    public static void runConsole(String args) throws InterruptedException {
+//CONSOLE VERSION
+    private static void runConsole(String args) throws InterruptedException {
         Scanner scanner = new Scanner(System.in);
-        Hero hero;
+        Hero hero = null;
 
         System.out.println("WELCOME TO SWINGY");
         System.out.println("GAME HAS STARTED ######## YOU MAY BEGIN!!");
         System.out.println("The Choice number is 1 or any number ******** \nCHOOSE wisely!!!");
         System.out.println("Choose '1' for new player   OR    Press any character to load existing player");
-
         if (scanner.nextInt() == 1) {
             System.out.println("CHOOSE HERO\n'1' for Archer , '2' for Swordsman");
-            if (scanner.nextInt() == 1) {
+            String str = scanner.next();
+            if (str.equals("1")) {
                 System.out.println("Enter name");
                 hero = new Archer(scanner.next());
-            } else  {
+            } else if (str.equals("2")) {
                 System.out.println("Enter name");
                 hero = new Swordsman(scanner.next());
             }
-        }
-        else
+            else {
+                System.out.println("Error: Choose a hero");
+                System.exit(0);
+            }
+        } else
             hero = new ReadFile().deserializePlayer();
         validation(hero);
         Map map = new Map(hero.getLevel(), true);
         Direction direction = new Direction();
         Map[] maps = map.createMap(hero);
         Battle battle = new Battle();
+        //noinspection InfiniteLoopStatement
         while (true) {
             System.out.println(hero.toString());
             direction.dir(hero, args);
@@ -85,8 +88,8 @@ public class App
             }
         }
     }
-
-    public static void runGui(String args) throws IOException, InterruptedException {
+//GUI VERSION
+    private static void runGui(String args) throws IOException, InterruptedException {
         SetUp game = new SetUp();
         gui.game();
 
@@ -102,18 +105,18 @@ public class App
             if (gui.getInput().equals("1")) {
                 System.out.println("Enter name");
                 hero = new Archer(gui.getInput());
-            } else  {
+            } else {
                 System.out.println("Enter name");
                 hero = new Swordsman(gui.getInput());
             }
-        }
-        else
+        } else
             hero = new ReadFile().deserializePlayer();
         validation(hero);
         Map map = new Map(hero.getLevel(), true);
         Direction direction = new Direction();
         Map[] maps = map.createMap(hero);
         Battle battle = new Battle();
+        //noinspection InfiniteLoopStatement
         while (true) {
             System.out.println(hero.toString());
             direction.dir(hero, args);

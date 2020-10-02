@@ -12,4 +12,5 @@ public class Globals {
     public static int previousY;
 
     public static String args;
+
 }
