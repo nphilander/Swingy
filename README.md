@@ -58,4 +58,4 @@ necessary experience to level up will follow this pattern:
  
  ##TO RUN GAME
  :mvn clean package
- :java -jar swingy.jar console   or   java -jar swingy.jar gui
+ :java -jar swingy-1-jar-with-dependencies.jar console   or   java -jar swingy-1-jar-with-dependencies.jar gui
