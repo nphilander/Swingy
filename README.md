@@ -1,61 +1,151 @@
-# All About Swingy
+# 🎮 Swingy: A Java RPG Adventure
+*A minimalist, flexible RPG where heroes battle villains—playable in **GUI** or **CLI**, with seamless switching!*
 
-## What its about
+Built with **MVC architecture**, **Maven**, **Hibernate validation**, and **MySQL persistence**.
 
-A minimalistic Java RPG game that can be played either on a GUI or a CLI or even allow switching between them during gameplay. The program needs to follow the Model-View-Controller architecture, automated Maven build and validate user input through annotation validation(Hibernate). Game data is persisted to a MySQL database upon game exit or at any moment the user decides to save a game state.
+![Java](https://img.shields.io/badge/Java-8-blue)  
+![Maven](https://img.shields.io/badge/Build-Maven%203.9+-green)  
+![MySQL](https://img.shields.io/badge/DB-MySQL-orange)
 
-## Gameplay
+---
 
-A player can choose between two different hero types. There's Swordsman and Archer. Each with their own different stats.
+## ✨ Features
+- **Dual Interface**: Switch between **GUI** and **CLI** mid-game!
+- **Hero Classes**: Choose between **Swordsman** or **Archer**, each with unique stats.
+- **Dynamic Maps**: Procedurally generated based on hero level.
+- **Epic Battles**: Fight villains or risk fleeing-50% chance to escape!
+- **Artifacts**: Collect weapons, armor, and helms to boost stats.
+- **Persistent Progress**: Save heroes and game states to **MySQL**.
 
-When the player starts the game he has 2 options:
- * Create a hero
- * Select a previously created hero.
- 
-In either case, the player can see the hero stats:
- * Hero name
- * Hero class
- * Level
- * Experience
- * Attack
- * Defense
- * Hit Points
+---
+## ✨ Key Updates (2025)
+- **Upgraded Dependencies**:
+    - Hibernate Validator `6.2.5.Final` (Bean Validation 2.0)
+    - JUnit `4.13.2` for stable testing
+    - Jakarta EL `4.0.2` (replaced deprecated `javax.el`)
+___
 
-Hero stats are affected by the hero level and artifacts. There are 3 types of artefacs:
- * Weapon - increases the attack
- * Armor - increases defense
- * Helm - increases hit points
+- **Java 8 Required**:
+  ```xml
+  <maven.compiler.source>1.8</maven.compiler.source>
+  <maven.compiler.target>1.8</maven.compiler.target>
+  ```
+___
+- **System Requirements**:
+  - Java 8 JDK(Not JRE)
+  - Maven 3.9+
+  - MySQL 5.7+(for game state persistence)
+___
 
-After choosing a hero the actual game begins. The hero needs to navigate a square map with the size calculated by the formula  *((level - 1) * 5) + 10 - (level % 2)*. 
-For example a hero of level 7 will be placed on a 39 X 39 map.
-The initial position of the hero is in the center of the map. He wins the game if he reaches on of the borders of the map. Each turn he can move one position in one of the four directions:
- * North
- * East
- * South
- * West
+## 🚀 Quick Start Guide
+### Clone & Build
+  ```sh
+  git clone https://github.com/your-repo/swingy.git
+   cd swingy
+   mvn clean package
+  ```
 
-When a map is generated, villains of varying power will be spread randomly over the
-map. When a hero moves to a position occupied by a villain, the hero has 2 options:
- * Fight, which engages him in a battle with the villain
- * Run, which gives him a 50% chance of returning to the previous position. If the
-odds aren’t on his side, he must fight the villain.
+### Run the Game
+#### Command Line Mode:
+```sh
+   java -jar target/swingy-1-jar-with-dependencies.jar console
+   ```
 
-The battle between the hero and villain will be simulated and the outcome will be presented to the user.
-If a hero looses a battle, he dies and loses the mission.
-If a hero wins a battle, he gains:
- * Experience points, based on the villain power. Of course, he will level up if he
-reaches the next level experience.
- * An artifact, which he can keep or leave. Of course, winning a battle doesn’t guarantee that an artefact will be droped and the quality of the artefact also varies
-depending on the villain’s strength.
+#### Graphical Mode:
 
-Leveling up is based on the following formula *(level * 1000) + ((level − 1)^2) * 450*. So the
-necessary experience to level up will follow this pattern:
- * Level 1 - 1000 XP
- * Level 2 - 2450 XP
- * Level 3 - 4800 XP
- * Level 4 - 8050 XP
- * Level 5 - 12200 XP
- 
- ##TO RUN GAME
- :mvn clean package
- :java -jar swingy-1-jar-with-dependencies.jar console   or   java -jar swingy-1-jar-with-dependencies.jar gui
+```sh
+   java -jar target/swingy-1-jar-with-dependencies.jar gui
+   ```
+___
+## 🎮 Gameplay Overview
+
+### 🧙 Hero Selection
+Choose between two unique hero classes:
+- **Swordsman**: Balanced warrior
+- **Archer**: Ranged specialist
+
+**Starting Options**:
+1. **Create New Hero**
+2. **Load Existing Hero**
+
+### 📊 Hero Stats Display
+All heroes show:
+| Attribute  | Description          |
+|------------|----------------------|
+| Name       | Hero's identifier    |
+| Class      | Swordsman or Archer  |
+| Level      | Current power tier   |
+| Experience | Progress to next level |
+| Attack     | Damage capability    |
+| Defense    | Damage resistance    |
+| Hit Points | Health capacity      |
+
+### 🏆 Artifact System
+Collectible items that enhance stats:
+- **Weapon** (`⚔️`): Boosts Attack
+- **Armor** (`🛡️`): Increases Defense
+- **Helm** (`⛑️`): Augments Hit Points
+
+---
+### 🌍 World Navigation
+Map Size Formula:
+((level - 1) * 5) + 10 - (level % 2)
+Example: Level 7 → 39×39 grid
+
+#### Game Rules:
+
+Start at map center
+
+Win by reaching any border
+
+#### Movement options:
+
+| Direction | Icon |
+|-----------|------|
+| North     | ↑    |
+| East      | →    |
+| South     | ↓    |
+| West      | ←    |
+___
+
+### ⚔️ Villain Encounters
+When encountering enemies:
+
+#### Fight
+
+- Turn-based battle simulation
+
+- Risk: Hero death = Game Over
+
+#### Run (50% Success Chance)
+
+- Successful: Return to previous position
+
+- Failed: Forced combat
+
+#### Victory Rewards:
+``
+Experience Points:
+(level × 1000) + ((level − 1)² × 450)
+``
+Artifact Chance: Random drop (quality scales with villain strength)
+___
+
+### 📈 Level Progression
+| Level | XP Required |
+|-------|-------------|
+| 1     | 1,000       |
+| 2     | 2,450       |
+| 3     | 4,800       |
+| 4     | 8,050       |
+| 5     | 12,200      |
+
+___
+## 🛠️ Technical Architecture
+- MVC Pattern: Clean separation of concerns
+
+- Hibernate Validation: Annotated input validation
+
+- MySQL Integration: Automatic game state persistence
+
+- Maven Build: Standardized project structure
