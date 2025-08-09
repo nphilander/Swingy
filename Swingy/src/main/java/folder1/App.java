@@ -6,6 +6,7 @@ import folder1.Controller.ReadFile;
 import folder1.Model.*;
 import folder1.View.Gui;
 import folder1.View.SetUp;
+import org.hibernate.validator.messageinterpolation.ParameterMessageInterpolator;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
@@ -34,14 +35,19 @@ public class App {
     }
 
     private static void validation(Hero hero) {
-        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        ValidatorFactory factory = Validation.byDefaultProvider()
+                .configure()
+                .messageInterpolator(new ParameterMessageInterpolator()) // Critical change
+                .buildValidatorFactory();
+
         Validator validator = factory.getValidator();
         Set<ConstraintViolation<Hero>> violations = validator.validate(hero);
-        for (ConstraintViolation<Hero> violation : violations)
+        for (ConstraintViolation<Hero> violation : violations) {
             if (violation.getMessage() != null) {
                 System.out.println(violation.getMessage());
                 System.exit(0);
             }
+        }
     }
 //CONSOLE VERSION
     private static void runConsole(String args) throws InterruptedException {
